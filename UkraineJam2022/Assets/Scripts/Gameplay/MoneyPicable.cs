@@ -2,14 +2,13 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Pickable : MonoBehaviour
+public class MoneyPicable : Pickable
 {
-    //TODO animacja
-    [HideInInspector]
-    public PicablePlace piclablePlace;
-    public virtual void Pickup()
+    public override void Pickup()
     {
         gameObject.SetActive(false);
         piclablePlace.resereved = false;
+        base.Pickup();
+        MoneyPool.I.Return(transform);
     }
 }

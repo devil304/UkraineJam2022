@@ -27,15 +27,15 @@ public class PickablePlacement : MonoBehaviour
         var randomPoint = GetRandomPoint();
         if (randomPoint == null)
         {
-            //TODO dodaæ dzia³aj¹ce  zapobieganie spawnenia na pieniadzach 
-            _goatskin.transform.position = new Vector3(0,0,0);
+            randomPoint = _picablePlace[UnityEngine.Random.Range(0, _picablePlace.Length)];
+            _goatskin.transform.position = randomPoint.transform.position;
         }
         else
         {
             randomPoint.resereved = true;
             _goatskin.transform.position = randomPoint.transform.position;
-            _goatskin.piclablePlace = randomPoint;
         }
+        _goatskin.piclablePlace = randomPoint;
         _goatskin.gameObject.SetActive(true);
     }
 
@@ -44,10 +44,10 @@ public class PickablePlacement : MonoBehaviour
         var randomPoint = GetRandomPoint();
         if (!randomPoint) return;
         randomPoint.resereved = true;
-        var money = Instantiate(_moneyPrefab);
+        var money = MoneyPool.I.Get();
         var pickable = _moneyPrefab.GetComponent<Pickable>();
         pickable.piclablePlace = randomPoint;
-        money.transform.position = randomPoint.transform.position;
+        money.position = randomPoint.transform.position;
         money.gameObject.SetActive(true);
     }
 

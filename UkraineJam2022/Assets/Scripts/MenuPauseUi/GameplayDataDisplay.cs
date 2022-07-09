@@ -1,3 +1,4 @@
+using DG.Tweening;
 using System.Collections;
 using System.Collections.Generic;
 using TMPro;
@@ -40,8 +41,10 @@ public class GameplayDataDisplay : MonoBehaviour
     private void UpdateBadLuck()
     {
         _luckSwitchChange.SetActive(true);
-        _badLuckPlayer1.text = _player1.hasBadLuck ? "Bad luck!" : "";
-        _badLuckPlayer2.text = _player2.hasBadLuck ? "Bad luck!" : "";
+        DOVirtual.DelayedCall(0.2f, () => {
+            _badLuckPlayer1.text = _player1.hasBadLuck ? "Bad luck!" : "";
+            _badLuckPlayer2.text = _player2.hasBadLuck ? "Bad luck!" : "";
+        });
     }
 
     private void UpdateMoney()
