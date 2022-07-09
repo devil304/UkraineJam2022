@@ -8,9 +8,12 @@ AnimatorStateTransition:
   m_PrefabAsset: {fileID: 0}
   m_Name: 
   m_Conditions:
-  - m_ConditionMode: 1
-    m_ConditionEvent: RightBack
-    m_EventTreshold: 0
+  - m_ConditionMode: 3
+    m_ConditionEvent: Horisontal
+    m_EventTreshold: 0.5
+  - m_ConditionMode: 3
+    m_ConditionEvent: Vertical
+    m_EventTreshold: 0.5
   m_DstStateMachine: {fileID: 0}
   m_DstState: {fileID: 1411126974438317180}
   m_Solo: 0
@@ -35,13 +38,13 @@ AnimatorStateTransition:
   m_Conditions:
   - m_ConditionMode: 4
     m_ConditionEvent: Vertical
-    m_EventTreshold: 0.01
+    m_EventTreshold: 0.5
   - m_ConditionMode: 3
     m_ConditionEvent: Horisontal
-    m_EventTreshold: -0.25
+    m_EventTreshold: -0.5
   - m_ConditionMode: 4
     m_ConditionEvent: Horisontal
-    m_EventTreshold: 0.25
+    m_EventTreshold: 0.5
   m_DstStateMachine: {fileID: 0}
   m_DstState: {fileID: 2290151803534402409}
   m_Solo: 0
@@ -64,9 +67,12 @@ AnimatorStateTransition:
   m_PrefabAsset: {fileID: 0}
   m_Name: 
   m_Conditions:
-  - m_ConditionMode: 2
-    m_ConditionEvent: RightBack
-    m_EventTreshold: 0
+  - m_ConditionMode: 4
+    m_ConditionEvent: Horisontal
+    m_EventTreshold: 0.5
+  - m_ConditionMode: 4
+    m_ConditionEvent: Vertical
+    m_EventTreshold: 0.5
   m_DstStateMachine: {fileID: 0}
   m_DstState: {fileID: 2290151803534402409}
   m_Solo: 0
@@ -89,9 +95,15 @@ AnimatorStateTransition:
   m_PrefabAsset: {fileID: 0}
   m_Name: 
   m_Conditions:
-  - m_ConditionMode: 2
-    m_ConditionEvent: Right
-    m_EventTreshold: 0
+  - m_ConditionMode: 4
+    m_ConditionEvent: Horisontal
+    m_EventTreshold: 0.5
+  - m_ConditionMode: 4
+    m_ConditionEvent: Horisontal
+    m_EventTreshold: 0.5
+  - m_ConditionMode: 3
+    m_ConditionEvent: Vertical
+    m_EventTreshold: 0.5
   m_DstStateMachine: {fileID: 0}
   m_DstState: {fileID: 2290151803534402409}
   m_Solo: 0
@@ -116,7 +128,10 @@ AnimatorStateTransition:
   m_Conditions:
   - m_ConditionMode: 3
     m_ConditionEvent: Vertical
-    m_EventTreshold: 0
+    m_EventTreshold: 0.5
+  - m_ConditionMode: 3
+    m_ConditionEvent: Horisontal
+    m_EventTreshold: 0.5
   m_DstStateMachine: {fileID: 0}
   m_DstState: {fileID: -1538525238621015328}
   m_Solo: 0
@@ -139,9 +154,15 @@ AnimatorStateTransition:
   m_PrefabAsset: {fileID: 0}
   m_Name: 
   m_Conditions:
-  - m_ConditionMode: 1
-    m_ConditionEvent: Right
-    m_EventTreshold: 0
+  - m_ConditionMode: 3
+    m_ConditionEvent: Horisontal
+    m_EventTreshold: 0.5
+  - m_ConditionMode: 3
+    m_ConditionEvent: Vertical
+    m_EventTreshold: -0.5
+  - m_ConditionMode: 4
+    m_ConditionEvent: Vertical
+    m_EventTreshold: 0.5
   m_DstStateMachine: {fileID: 0}
   m_DstState: {fileID: 1334412032629106142}
   m_Solo: 0
@@ -163,7 +184,7 @@ AnimatorState:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: RightForward
+  m_Name: HorisontalForward
   m_Speed: 1
   m_CycleOffset: 0
   m_Transitions:
@@ -254,13 +275,13 @@ AnimatorStateTransition:
   m_Conditions:
   - m_ConditionMode: 3
     m_ConditionEvent: Vertical
-    m_EventTreshold: -0.01
+    m_EventTreshold: -0.5
   - m_ConditionMode: 3
     m_ConditionEvent: Horisontal
-    m_EventTreshold: -0.25
+    m_EventTreshold: -0.5
   - m_ConditionMode: 4
     m_ConditionEvent: Horisontal
-    m_EventTreshold: 0.25
+    m_EventTreshold: 0.5
   m_DstStateMachine: {fileID: 0}
   m_DstState: {fileID: 2290151803534402409}
   m_Solo: 0
@@ -309,7 +330,7 @@ AnimatorState:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: RightBack
+  m_Name: HorisontalBack
   m_Speed: 1
   m_CycleOffset: 0
   m_Transitions:
@@ -365,13 +386,13 @@ AnimatorStateTransition:
   m_Conditions:
   - m_ConditionMode: 4
     m_ConditionEvent: Vertical
-    m_EventTreshold: -0.01
+    m_EventTreshold: -0.5
   - m_ConditionMode: 3
     m_ConditionEvent: Horisontal
-    m_EventTreshold: -0.25
+    m_EventTreshold: -0.5
   - m_ConditionMode: 4
     m_ConditionEvent: Horisontal
-    m_EventTreshold: 0.25
+    m_EventTreshold: 0.5
   m_DstStateMachine: {fileID: 0}
   m_DstState: {fileID: 2677831141242843535}
   m_Solo: 0
@@ -421,9 +442,12 @@ AnimatorStateTransition:
   m_PrefabAsset: {fileID: 0}
   m_Name: 
   m_Conditions:
-  - m_ConditionMode: 2
-    m_ConditionEvent: RightForward
-    m_EventTreshold: 0
+  - m_ConditionMode: 4
+    m_ConditionEvent: Vertical
+    m_EventTreshold: 0.5
+  - m_ConditionMode: 3
+    m_ConditionEvent: Horisontal
+    m_EventTreshold: 0.5
   m_DstStateMachine: {fileID: 0}
   m_DstState: {fileID: 2290151803534402409}
   m_Solo: 0
@@ -448,13 +472,13 @@ AnimatorStateTransition:
   m_Conditions:
   - m_ConditionMode: 3
     m_ConditionEvent: Vertical
-    m_EventTreshold: 0.01
+    m_EventTreshold: 0.5
   - m_ConditionMode: 3
     m_ConditionEvent: Horisontal
-    m_EventTreshold: -0.25
+    m_EventTreshold: -0.5
   - m_ConditionMode: 4
     m_ConditionEvent: Horisontal
-    m_EventTreshold: 0.25
+    m_EventTreshold: 0.5
   m_DstStateMachine: {fileID: 0}
   m_DstState: {fileID: 632522820314214187}
   m_Solo: 0
