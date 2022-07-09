@@ -20,12 +20,12 @@ public class Player : MonoBehaviour
 
     private void OnEnable()
     {
-        TimeManager.OnTimeProgress += LoseMoney;
+        TimeManager.OnTimeProgressMoney += LoseMoney;
     }
 
     private void OnDisable()
     {
-        TimeManager.OnTimeProgress -= LoseMoney;
+        TimeManager.OnTimeProgressMoney -= LoseMoney;
     }
 
     private void LoseMoney()
@@ -36,21 +36,19 @@ public class Player : MonoBehaviour
             GameplayManager.I.Lose(this);
     }
 
-    private void OnTriggerEnter2D(Collider2D collision)
-    {
-        if (collision.tag == "Money" && !hasBadLuck)
-        {
-            money++;
-            collision.GetComponent<Pickable>().SetRandomPostion();
-        }
-        else if (collision.tag == "Goatskin" && hasBadLuck)
-        {
-            goatskin = true;
-        }
-    }
-
     private void OnCollisionEnter2D(Collision2D collision)
     {
+        if (collision.gameObject.tag == "Money" && !hasBadLuck)
+        {
+            money++;
+            collision.transform.GetComponent<Pickable>().Pickup();
+        }
+        else if (collision.gameObject.tag == "Goatskin" && hasBadLuck)
+        {
+            goatskin = true;
+            collision.transform.GetComponent<Pickable>().Pickup();
+        }
+
         if (!goatskin) return;
         if (collision.gameObject.tag != "Player") return;
         GameplayManager.OnBadLackChange?.Invoke();

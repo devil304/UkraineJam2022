@@ -5,9 +5,12 @@ using UnityEngine;
 public class Pickable : MonoBehaviour
 {
     //TODO animacja
-
-    public void SetRandomPostion()
+    [HideInInspector]
+    public PicablePlace piclablePlace;
+    public virtual void Pickup()
     {
-        //TODO
+        gameObject.SetActive(false);
+        piclablePlace.resereved = false;
+        //TODO pool
     }
 }
