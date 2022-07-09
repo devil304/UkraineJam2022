@@ -9,6 +9,8 @@ public class EndPanel : MonoBehaviour
 
     public void ShowEndPanel()
     {
+        InputManager.I.Player1AM.Main.Disable();
+        InputManager.I.Player2AM.Main.Disable();
         _endPanel.SetActive(true);
     }
 
