@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -8,21 +9,15 @@ public class Pause : MonoBehaviour
 {
     public static Pause Inst;
     [SerializeField] private GameObject _pause;
-
+    
     private void Awake()
     {
         Inst = this;
+        InputManager.I.Player1AM.Main.Menu.performed += StartPause;
+        InputManager.I.Player2AM.Main.Menu.performed += StartPause;
     }
 
-    private void Update()
-    {
-        if (Keyboard.current.escapeKey.wasPressedThisFrame)
-        {
-            StartPause();
-        }
-    }
-
-    private void StartPause()
+    private void StartPause(InputAction.CallbackContext obj)
     {
         TimeManager.I.Pause();
         _pause.SetActive(true);
