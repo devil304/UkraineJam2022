@@ -141,7 +141,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 156977896420067938, guid: 5c79206396c1d6e49b9536d2a52d2d16, type: 3}
       propertyPath: m_MinValue
-      value: -80
+      value: -50
       objectReference: {fileID: 0}
     - target: {fileID: 156977896420067938, guid: 5c79206396c1d6e49b9536d2a52d2d16, type: 3}
       propertyPath: m_OnValueChanged.m_PersistentCalls.m_Calls.Array.size
@@ -1403,7 +1403,7 @@ AudioSource:
   m_PlayOnAwake: 1
   m_Volume: 1
   m_Pitch: 1
-  Loop: 0
+  Loop: 1
   Mute: 0
   Spatialize: 0
   SpatializePostEffects: 0
