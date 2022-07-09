@@ -10,12 +10,11 @@ public class TimeManager : MonoBehaviour
     public static Action OnTimeProgress = delegate { };
 
     float _time = 0;
-    float _timeFromLastPing = 0; //TODO przyspieszaæ
+    float _timeFromLastPing = 0;
     bool _paused;
 
-    float _pingTime = 1;
-
-    
+    float _pingTime = 2;
+    float _pingTimeChange = 0.002f;
 
     void Awake()
     {
@@ -32,8 +31,10 @@ public class TimeManager : MonoBehaviour
             if (_timeFromLastPing >= _pingTime)
             {
                 _timeFromLastPing = 0;
+                _pingTime -= _pingTimeChange; 
                 OnTimeProgress?.Invoke();
             }
+
         }
     }
 

@@ -10,6 +10,7 @@ public class GameplayManager : MonoBehaviour
 
     [SerializeField] private Player _firstPlayer;
     [SerializeField] private Player _secendPlayer;
+    [SerializeField] private EndPanel _endPanel;
 
     private void Awake()
     {
@@ -39,6 +40,7 @@ public class GameplayManager : MonoBehaviour
 
     public void Lose(Player loser)
     {
-        //TODO
+        TimeManager.I.Pause();
+        _endPanel.ShowEndPanel();
     }
 }

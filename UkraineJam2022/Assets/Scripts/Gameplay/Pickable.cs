@@ -4,6 +4,8 @@ using UnityEngine;
 
 public class Pickable : MonoBehaviour
 {
+    //TODO animacja
+
     protected void SetRandomPostion()
     {
         //TODO

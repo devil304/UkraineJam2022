@@ -33,7 +33,7 @@ public class Player : MonoBehaviour
         {
             money++;
         }
-        if (collision.tag == "Goatskin")
+        if (collision.tag == "Goatskin" && hasBadLuck)
         {
             goatskin = true;
         }
