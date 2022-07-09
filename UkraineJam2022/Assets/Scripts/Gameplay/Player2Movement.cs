@@ -15,6 +15,8 @@ public class Player2Movement : MonoBehaviour
 
     Player _myPlayer;
 
+    [SerializeField] RuntimeAnimatorController _poorAnimator, _richAnimator;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -25,6 +27,7 @@ public class Player2Movement : MonoBehaviour
         InputManager.I.Player2AM.Main.Horizontal.canceled += ProcessInputHorizontal;
         InputManager.I.Player2AM.Main.Vertical.performed += ProcessInputVertical;
         InputManager.I.Player2AM.Main.Vertical.canceled += ProcessInputVertical;
+        //_myAnim.runtimeAnimatorController = _poorAnimator;
     }
 
     private void ProcessInputHorizontal(InputAction.CallbackContext obj)
