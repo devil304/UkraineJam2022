@@ -10,9 +10,7 @@ public class TimeManager : MonoBehaviour
     public static Action OnTimeProgressMoney = delegate { };
     public static Action OnGoastProgress = delegate { };
 
-    //koza x2 8s (pech równa siê koniec buffy kozy) 
-    //120s 2 monety 180 3 monety  ...
-
+    public float GameTime => _time;
     float _time = 0;
     float _timeFromLastMoney = 0;
     float _timeFromGoast = 0;

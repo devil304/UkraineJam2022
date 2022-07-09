@@ -1,3 +1,4 @@
+using DG.Tweening;
 using System;
 using System.Collections;
 using System.Collections.Generic;
@@ -9,6 +10,7 @@ public class Player : MonoBehaviour
     public Action OnPlayerMoneyChange = delegate { };
     public bool hasBadLuck;
     public bool goatskin;
+    public bool goast;
     public int money = 100;
 
     SpriteRenderer _mySR;
@@ -33,7 +35,29 @@ public class Player : MonoBehaviour
     private void LoseMoney()
     {
         if (!hasBadLuck) return;
-        money--;
+        var time = TimeManager.I.GameTime;
+
+        if (time < 120)
+            money--;
+        else if (time < 180)
+            money = money - 2;
+        else if (time < 240)
+            money = money - 3;
+        else if (time < 300)
+            money = money - 4;
+        else if (time < 360)
+            money = money - 5;
+        else if (time < 420)
+            money = money - 6;
+        else if (time < 480)
+            money = money - 7;
+        else if (time < 540)
+            money = money - 8;
+        else if (time < 600)
+            money = money - 9;
+        else
+            money = money - 10;
+
         OnPlayerMoneyChange?.Invoke();
         if (money <= 0)
             GameplayManager.I.Lose(this);
@@ -50,13 +74,22 @@ public class Player : MonoBehaviour
     {
         if (collision.gameObject.tag == "Money" && !hasBadLuck)
         {
-            money++;
+            if (goast)
+                money += 2;
+            else
+                money++;
             OnPlayerMoneyChange?.Invoke();
             collision.transform.GetComponent<Pickable>().Pickup();
         }
         else if (collision.gameObject.tag == "Goatskin" && hasBadLuck)
         {
             goatskin = true;
+            collision.transform.GetComponent<Pickable>().Pickup();
+        }
+        else if (collision.gameObject.tag == "Goast" && !hasBadLuck)
+        {
+            goast = true;
+            DOVirtual.DelayedCall(8, () => goast = false);
             collision.transform.GetComponent<Pickable>().Pickup();
         }
     }

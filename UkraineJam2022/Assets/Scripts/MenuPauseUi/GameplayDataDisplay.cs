@@ -35,7 +35,10 @@ public class GameplayDataDisplay : MonoBehaviour
     private void Start ()
     {
         UpdateMoney();
-        UpdateBadLuck();
+        DOVirtual.DelayedCall(0.2f, () => {
+            _badLuckPlayer1.text = _player1.hasBadLuck ? "Bad luck!" : "";
+            _badLuckPlayer2.text = _player2.hasBadLuck ? "Bad luck!" : "";
+        });
     }
 
     private void UpdateBadLuck()
