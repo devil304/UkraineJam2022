@@ -9,6 +9,15 @@ public class Player : MonoBehaviour
     public bool goatskin;
     public int money = 100;
 
+    SpriteRenderer _mySR;
+
+    public SpriteRenderer PlayerSR => _mySR;
+
+    void Start()
+    {
+        _mySR = GetComponent<SpriteRenderer>();
+    }
+
     private void OnEnable()
     {
         TimeManager.OnTimeProgress += LoseMoney;

@@ -17,7 +17,7 @@ public class InputManager : MonoBehaviour
     public Player1  Player1AM => _player1ActionMap;
     public Player2  Player2AM => _player2ActionMap;
 
-    [SerializeField] Transform[] _testSquers;
+    //[SerializeField] Transform[] _testSquers;
 
     //Vector2[] _lastMovementVectors = new Vector2[2];
  
@@ -52,8 +52,8 @@ public class InputManager : MonoBehaviour
         _player2ActionMap.devices = null;
         devices = new List<InputDevice>();
         devices.Add(_keyboard);
-        if(_xbox[0]!=null)
-            devices.Add(_xbox[0]);
+        if(_xbox[1]!=null)
+            devices.Add(_xbox[1]);
         _player2ActionMap.devices = new ReadOnlyArray<InputDevice>(devices.ToArray());
         _player2ActionMap.Enable();
         _player2ActionMap.Main.Enable();
