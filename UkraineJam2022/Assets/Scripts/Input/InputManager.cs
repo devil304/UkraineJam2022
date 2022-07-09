@@ -6,6 +6,7 @@ using UnityEngine;
 using UnityEngine.InputSystem;
 using UnityEngine.InputSystem.Utilities;
 
+[DefaultExecutionOrder(-100)]
 public class InputManager : MonoBehaviour
 {
     public static InputManager I;
@@ -21,17 +22,6 @@ public class InputManager : MonoBehaviour
     //Vector2[] _lastMovementVectors = new Vector2[2];
  
     void Awake()
-    {
-        I=this;
-    }
-
-    void OnDestroy()
-    {
-        I=null;
-    }
-
-    // Start is called before the first frame update
-    void Start()
     {
         InputDevice[] _xbox = new InputDevice[2];
         InputDevice _keyboard = null;
@@ -51,6 +41,8 @@ public class InputManager : MonoBehaviour
         if(_xbox[0]!=null)
             devices.Add(_xbox[0]);
         _player1ActionMap.devices = new ReadOnlyArray<InputDevice>(devices.ToArray());
+        _player1ActionMap.Enable();
+        _player1ActionMap.Main.Enable();
         //Debug.Log($"Player1 devices: {_player1ActionMap.devices.Value.Count}");
         /* _player1ActionMap.Main.Movement.performed += Player1MovementPerformed;
         _player1ActionMap.Main.Movement.canceled += Player1MovementPerformed; */
@@ -63,20 +55,19 @@ public class InputManager : MonoBehaviour
         if(_xbox[0]!=null)
             devices.Add(_xbox[0]);
         _player2ActionMap.devices = new ReadOnlyArray<InputDevice>(devices.ToArray());
+        _player2ActionMap.Enable();
+        _player2ActionMap.Main.Enable();
         //Debug.Log($"Player2 devices: {_player2ActionMap.devices.Value.Count}");
         /* _player2ActionMap.Main.Movement.performed += Player2MovementPerformed;
         _player2ActionMap.Main.Movement.canceled += Player2MovementPerformed; */
 
-        StartCoroutine(WaitOneFrame());
+        //StartCoroutine(WaitOneFrame());
+        I=this;
     }
 
-    IEnumerator WaitOneFrame(){
-        yield return null;
-        _player1ActionMap.Enable();
-        _player1ActionMap.Main.Enable();
-
-        _player2ActionMap.Enable();
-        _player2ActionMap.Main.Enable();
+    void OnDestroy()
+    {
+        I=null;
     }
 
     private void DeviceChange(InputDevice device, InputDeviceChange change)
