@@ -24,12 +24,14 @@ public class Pause : MonoBehaviour
 
     private void StartPause()
     {
+        TimeManager.I.Pause();
         _pause.SetActive(true);
     }
 
     public void Resume()
     {
         _pause.SetActive(false);
+        TimeManager.I.UnPause();
     }
 
     public void Exit()
