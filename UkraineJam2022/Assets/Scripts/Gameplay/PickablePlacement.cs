@@ -5,44 +5,57 @@ using UnityEngine;
 
 public class PickablePlacement : MonoBehaviour
 {
-    [SerializeField] private PicablePlace [] _picablePlace;
+    [SerializeField] private PicablePlace[] _picablePlaceMoney;
+    [SerializeField] private PicablePlace[] _picablePlaceGoatskin;
+    [SerializeField] private PicablePlace[] _picablePlaceGoat;
     [SerializeField] private GameObject _moneyPrefab;
     [SerializeField] private Pickable _goatskin;
-    
+    [SerializeField] private Pickable _goast;
+
     private void OnEnable()
     {
         PlaceGoatskin();
         GameplayManager.OnBadLackChange += PlaceGoatskin;
         TimeManager.OnTimeProgressMoney += PlaceMoney;
+        TimeManager.OnGoastProgress += PlaceGoast;
+    }
+
+    private void PlaceGoast()
+    {
+        if (_goast.isActiveAndEnabled) return;
+        var randomIndex = UnityEngine.Random.Range(0, _picablePlaceGoat.Length);
+        var randomPoint = _picablePlaceGoat[randomIndex];
+        randomPoint.resereved = true;
+        _goast.transform.position = randomPoint.transform.position;
+        _goast.piclablePlace = randomPoint;
+        _goast.gameObject.SetActive(true);
     }
 
     private void OnDisable()
     {
         GameplayManager.OnBadLackChange -= PlaceGoatskin;
         TimeManager.OnTimeProgressMoney -= PlaceMoney;
+        TimeManager.OnGoastProgress -= PlaceGoast;
     }
 
     public void PlaceGoatskin()
     {
-        var randomPoint = GetRandomPoint();
-        if (randomPoint == null)
-        {
-            randomPoint = _picablePlace[UnityEngine.Random.Range(0, _picablePlace.Length)];
-            _goatskin.transform.position = randomPoint.transform.position;
-        }
-        else
-        {
-            randomPoint.resereved = true;
-            _goatskin.transform.position = randomPoint.transform.position;
-        }
+        var randomIndex = UnityEngine.Random.Range(0, _picablePlaceGoatskin.Length);
+        var randomPoint = _picablePlaceGoatskin[randomIndex];
+
+        randomPoint.resereved = true;
+        _goatskin.transform.position = randomPoint.transform.position;
+
         _goatskin.piclablePlace = randomPoint;
         _goatskin.gameObject.SetActive(true);
     }
 
     public void PlaceMoney()
     {
-        var randomPoint = GetRandomPoint();
-        if (!randomPoint) return;
+        var randomIndex = UnityEngine.Random.Range(0, _picablePlaceMoney.Length);
+        var picablePlace = _picablePlaceMoney[randomIndex];
+        if (picablePlace.resereved == true) return;
+        var randomPoint = picablePlace;
         randomPoint.resereved = true;
         var money = MoneyPool.I.Get();
         var pickable = _moneyPrefab.GetComponent<Pickable>();
@@ -50,12 +63,4 @@ public class PickablePlacement : MonoBehaviour
         money.position = randomPoint.transform.position;
         money.gameObject.SetActive(true);
     }
-
-    private PicablePlace GetRandomPoint()
-    {
-        var randomIndex = UnityEngine.Random.Range(0, _picablePlace.Length);
-        var picablePlace = _picablePlace[randomIndex];
-        if (picablePlace.resereved == true) return null;
-        return picablePlace;
-    } 
 }

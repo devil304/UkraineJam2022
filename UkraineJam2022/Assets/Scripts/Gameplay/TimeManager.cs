@@ -7,18 +7,19 @@ public class TimeManager : MonoBehaviour
 {
     public static TimeManager I;
 
-    public static Action OnTimeProgressPing = delegate { };
     public static Action OnTimeProgressMoney = delegate { };
+    public static Action OnGoastProgress = delegate { };
+
+    //koza x2 8s (pech równa siê koniec buffy kozy) 
+    //120s 2 monety 180 3 monety  ...
 
     float _time = 0;
-    float _timeFromLastPing = 0;
     float _timeFromLastMoney = 0;
+    float _timeFromGoast = 0;
     bool _paused;
 
-    float _pingTime = 2;
-    float _moneyTime = 5;
-    float _moneyTimeChange = 0.02f;
-    float _pingTimeChange = 0.005f;
+    float _moneyTime = 1;
+    float _goatTime = 90;
 
     void Awake()
     {
@@ -30,21 +31,18 @@ public class TimeManager : MonoBehaviour
         if (!_paused)
         {
             _time += Time.deltaTime;
-            _timeFromLastPing += Time.deltaTime;
             _timeFromLastMoney += Time.deltaTime;
-
-            if (_timeFromLastPing >= _pingTime)
-            {
-                _timeFromLastPing = 0;
-                _pingTime -= _pingTimeChange; 
-                OnTimeProgressPing?.Invoke();
-            }
+            _timeFromGoast += Time.deltaTime;
 
             if(_timeFromLastMoney >= _moneyTime)
             {
                 _timeFromLastMoney = 0;
-                _moneyTime -= _moneyTimeChange;
                 OnTimeProgressMoney?.Invoke();
+            }
+            if (_timeFromGoast >= _goatTime)
+            {
+                _timeFromGoast = 0;
+                OnGoastProgress?.Invoke();
             }
 
         }
