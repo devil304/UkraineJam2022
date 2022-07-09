@@ -8,13 +8,28 @@ using UnityEngine.InputSystem.Utilities;
 
 public class InputManager : MonoBehaviour
 {
+    public static InputManager I;
+
     Player1 _player1ActionMap;
     Player2 _player2ActionMap;
 
+    public Player1  Player1AM => _player1ActionMap;
+    public Player2  Player2AM => _player2ActionMap;
+
     [SerializeField] Transform[] _testSquers;
 
-    Vector2[] _lastMovementVectors = new Vector2[2];
+    //Vector2[] _lastMovementVectors = new Vector2[2];
  
+    void Awake()
+    {
+        I=this;
+    }
+
+    void OnDestroy()
+    {
+        I=null;
+    }
+
     // Start is called before the first frame update
     void Start()
     {
@@ -37,8 +52,8 @@ public class InputManager : MonoBehaviour
             devices.Add(_xbox[0]);
         _player1ActionMap.devices = new ReadOnlyArray<InputDevice>(devices.ToArray());
         //Debug.Log($"Player1 devices: {_player1ActionMap.devices.Value.Count}");
-        _player1ActionMap.Main.Movement.performed += Player1MovementPerformed;
-        _player1ActionMap.Main.Movement.canceled += Player1MovementPerformed;
+        /* _player1ActionMap.Main.Movement.performed += Player1MovementPerformed;
+        _player1ActionMap.Main.Movement.canceled += Player1MovementPerformed; */
 
 
         _player2ActionMap = new Player2();
@@ -49,8 +64,8 @@ public class InputManager : MonoBehaviour
             devices.Add(_xbox[0]);
         _player2ActionMap.devices = new ReadOnlyArray<InputDevice>(devices.ToArray());
         //Debug.Log($"Player2 devices: {_player2ActionMap.devices.Value.Count}");
-        _player2ActionMap.Main.Movement.performed += Player2MovementPerformed;
-        _player2ActionMap.Main.Movement.canceled += Player2MovementPerformed;
+        /* _player2ActionMap.Main.Movement.performed += Player2MovementPerformed;
+        _player2ActionMap.Main.Movement.canceled += Player2MovementPerformed; */
 
         StartCoroutine(WaitOneFrame());
     }
@@ -92,7 +107,7 @@ public class InputManager : MonoBehaviour
         }
     }
 
-    private void Player1MovementPerformed(InputAction.CallbackContext obj)
+    /* private void Player1MovementPerformed(InputAction.CallbackContext obj)
     {
         _lastMovementVectors[0] = obj.ReadValue<Vector2>();
     }
@@ -106,5 +121,5 @@ public class InputManager : MonoBehaviour
     {
         _testSquers[0].position += (Vector3)_lastMovementVectors[0]*2f*Time.deltaTime;
         _testSquers[1].position += (Vector3)_lastMovementVectors[1]*2f*Time.deltaTime;
-    }
+    } */
 }
