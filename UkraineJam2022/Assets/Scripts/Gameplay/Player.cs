@@ -21,19 +21,20 @@ public class Player : MonoBehaviour
 
     private void LoseMoney()
     {
+        if (!hasBadLuck) return;
         money--;
         if (money <= 0)
             GameplayManager.I.Lose(this);
-
     }
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
-        if (collision.tag == "Money")
+        if (collision.tag == "Money" && !hasBadLuck)
         {
             money++;
+            collision.GetComponent<Pickable>().SetRandomPostion();
         }
-        if (collision.tag == "Goatskin" && hasBadLuck)
+        else if (collision.tag == "Goatskin" && hasBadLuck)
         {
             goatskin = true;
         }

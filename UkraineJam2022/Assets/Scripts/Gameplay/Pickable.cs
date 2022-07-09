@@ -6,7 +6,7 @@ public class Pickable : MonoBehaviour
 {
     //TODO animacja
 
-    protected void SetRandomPostion()
+    public void SetRandomPostion()
     {
         //TODO
     }
