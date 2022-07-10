@@ -1,11 +1,14 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using TMPro;
 using UnityEngine;
 
 public class TimeManager : MonoBehaviour
 {
     public static TimeManager I;
+
+    [SerializeField] TextMeshProUGUI _timerText;
 
     public static Action OnTimeProgressMoney = delegate { };
     public static Action OnGoastProgress = delegate { };
@@ -42,7 +45,7 @@ public class TimeManager : MonoBehaviour
                 _timeFromGoast = 0;
                 OnGoastProgress?.Invoke();
             }
-
+            _timerText.text = String.Format("{0:00}",Math.Floor(_time/60))+":"+String.Format("{0:00}",_time%60);
         }
     }
 

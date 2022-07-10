@@ -14,13 +14,21 @@ public class Player : MonoBehaviour
     public int money = 100;
     private bool _playedMoneyLow = false;
 
+    bool rich = true;
+
     SpriteRenderer _mySR;
     [SerializeField] private AudioSource _audioSource;
+    [SerializeField] RuntimeAnimatorController[] _animators;
+    [SerializeField] Player _anotherPlayer;
 
     public SpriteRenderer PlayerSR => _mySR;
 
+    Animator _myAnim;
+
     void Start()
     {
+        _myAnim = GetComponent<Animator>();
+        _myAnim.runtimeAnimatorController = _animators[0];
         _mySR = GetComponent<SpriteRenderer>();
     }
 
@@ -32,6 +40,17 @@ public class Player : MonoBehaviour
     private void OnDisable()
     {
         TimeManager.OnTimeProgressMoney -= LoseMoney;
+    }
+
+    void Update()
+    {
+        if(money<_anotherPlayer.money && rich){
+            rich = false;
+            _myAnim.runtimeAnimatorController = _animators[1];
+        }else if(money>_anotherPlayer.money && !rich){
+            rich = true;
+            _myAnim.runtimeAnimatorController = _animators[0];
+        }
     }
 
     private void LoseMoney()
