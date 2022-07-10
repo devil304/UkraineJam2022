@@ -10,6 +10,10 @@ public class EndPanel : MonoBehaviour
     [SerializeField] private Player _first;
     [SerializeField] private Player _secend;
     [SerializeField] private TextMeshProUGUI _endTitle;
+    [SerializeField] private GameObject _win1;
+    [SerializeField] private GameObject _win2;
+    [SerializeField] private GameObject _winBoth;
+
 
     public void ShowEndPanel()
     {
@@ -18,14 +22,23 @@ public class EndPanel : MonoBehaviour
         if (SecretsEnding.I.SecretEnding)
         {
             _endTitle.text = "Both brothers won!";
+            _win1.SetActive(false);
+            _win2.SetActive(false);
+            _winBoth.SetActive(true);
         }
         else if (_first.money > 0)
         {
             _endTitle.text = "First brother won!";
+            _win1.SetActive(true);
+            _win2.SetActive(false);
+            _winBoth.SetActive(false);
         }
         else
         {
             _endTitle.text = "Secend brother won!";
+            _win1.SetActive(false);
+            _win2.SetActive(true);
+            _winBoth.SetActive(false);
         }
 
         _endPanel.SetActive(true);

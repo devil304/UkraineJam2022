@@ -69,6 +69,13 @@ public class Player : MonoBehaviour
 
     private void OnCollisionEnter2D(Collision2D collision)
     {
+        if (collision.gameObject.tag == "Goast" && !hasBadLuck)
+        {
+            goast = true;
+            DOVirtual.DelayedCall(8, () => goast = false);
+            collision.transform.GetComponent<Pickable>().Pickup();
+        }
+
         if (!goatskin) return;
         if (collision.gameObject.tag != "Player") return;
 
@@ -99,12 +106,6 @@ public class Player : MonoBehaviour
             goatskin = true;
             collision.transform.GetComponent<Pickable>().Pickup();
             SecretsEnding.I.SecretsEndingGoatskinProgress = true;
-        }
-        else if (collision.gameObject.tag == "Goast" && !hasBadLuck)
-        {
-            goast = true;
-            DOVirtual.DelayedCall(8, () => goast = false);
-            collision.transform.GetComponent<Pickable>().Pickup();
         }
     }
 
