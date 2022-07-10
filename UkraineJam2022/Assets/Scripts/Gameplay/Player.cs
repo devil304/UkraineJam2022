@@ -12,8 +12,10 @@ public class Player : MonoBehaviour
     public bool goatskin;
     public bool goast;
     public int money = 100;
+    private bool _playedMoneyLow = false;
 
     SpriteRenderer _mySR;
+    [SerializeField] private AudioSource _audioSource;
 
     public SpriteRenderer PlayerSR => _mySR;
 
@@ -61,7 +63,14 @@ public class Player : MonoBehaviour
         OnPlayerMoneyChange?.Invoke();
 
         if (money <= 40)
+        {
+            if(!_playedMoneyLow)
+            {
+                _playedMoneyLow = true;
+                _audioSource.Play();
+            }
             SecretsEnding.I.SecretsEndingEnable = true;
+        }
 
         if (money <= 0)
             GameplayManager.I.Lose(this);

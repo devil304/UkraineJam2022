@@ -13,7 +13,8 @@ public class EndPanel : MonoBehaviour
     [SerializeField] private GameObject _win1;
     [SerializeField] private GameObject _win2;
     [SerializeField] private GameObject _winBoth;
-
+    [SerializeField] private AudioSource _win;
+    [SerializeField] private AudioSource _lose;
 
     public void ShowEndPanel()
     {
@@ -25,6 +26,7 @@ public class EndPanel : MonoBehaviour
             _win1.SetActive(false);
             _win2.SetActive(false);
             _winBoth.SetActive(true);
+            _lose.Play();
         }
         else if (_first.money > 0)
         {
@@ -32,6 +34,7 @@ public class EndPanel : MonoBehaviour
             _win1.SetActive(true);
             _win2.SetActive(false);
             _winBoth.SetActive(false);
+            _lose.Play();
         }
         else
         {
@@ -39,6 +42,7 @@ public class EndPanel : MonoBehaviour
             _win1.SetActive(false);
             _win2.SetActive(true);
             _winBoth.SetActive(false);
+            _win.Play();
         }
 
         _endPanel.SetActive(true);

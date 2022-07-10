@@ -8,6 +8,8 @@ public class GameplayManager : MonoBehaviour
     public static GameplayManager I;
     public static Action OnBadLackChange = delegate { };
 
+    [SerializeField] private AudioSource _audioSource;
+
     [SerializeField] private Player _firstPlayer;
     [SerializeField] private Player _secondPlayer;
     [SerializeField] private EndPanel _endPanel;
@@ -31,6 +33,7 @@ public class GameplayManager : MonoBehaviour
 
     private void ChangeLack()
     {
+        _audioSource.Play();
         _firstPlayer.hasBadLuck = !_firstPlayer.hasBadLuck;
         _secondPlayer.hasBadLuck = !_secondPlayer.hasBadLuck;
 

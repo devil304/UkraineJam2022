@@ -6,9 +6,9 @@ public class MoneyPicable : Pickable
 {
     public override void Pickup()
     {
+        base.Pickup();
         gameObject.SetActive(false);
         piclablePlace.resereved = false;
-        base.Pickup();
         MoneyPool.I.Return(transform);
     }
 }
