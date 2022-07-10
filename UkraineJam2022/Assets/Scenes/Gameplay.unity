@@ -123,6 +123,11 @@ NavMeshSettings:
     debug:
       m_Flags: 0
   m_NavMeshData: {fileID: 0}
+--- !u!1 &35889911 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 2975814286318280744, guid: 727aa48d38fa1f54fb919c05b54901fe, type: 3}
+  m_PrefabInstance: {fileID: 2018012690}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &45899120
 GameObject:
   m_ObjectHideFlags: 0
@@ -1836,7 +1841,7 @@ Camera:
   far clip plane: 1000
   field of view: 34
   orthographic: 1
-  orthographic size: 2.607616
+  orthographic size: 2.7746146
   m_Depth: -1
   m_CullingMask:
     serializedVersion: 2
@@ -5979,7 +5984,7 @@ MonoBehaviour:
     ModeOverride: 0
     LensShift: {x: 0, y: 0}
     GateFit: 2
-    m_SensorSize: {x: 1.4754857, y: 1}
+    m_SensorSize: {x: 1.386679, y: 1}
   m_Transitions:
     m_BlendHint: 0
     m_InheritPosition: 0
@@ -16301,6 +16306,18 @@ RectTransform:
   m_CorrespondingSourceObject: {fileID: 2975814286318280747, guid: 727aa48d38fa1f54fb919c05b54901fe, type: 3}
   m_PrefabInstance: {fileID: 2018012690}
   m_PrefabAsset: {fileID: 0}
+--- !u!114 &2018012696
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 35889911}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5a296bfb3086f204cadb6eabab4a334a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &2109043153
 GameObject:
   m_ObjectHideFlags: 0
