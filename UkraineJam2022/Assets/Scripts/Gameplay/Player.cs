@@ -59,6 +59,10 @@ public class Player : MonoBehaviour
             money = money - 10;
 
         OnPlayerMoneyChange?.Invoke();
+
+        if (money <= 40)
+            SecretsEnding.I.SecretsEndingEnable = true;
+
         if (money <= 0)
             GameplayManager.I.Lose(this);
     }
@@ -67,7 +71,11 @@ public class Player : MonoBehaviour
     {
         if (!goatskin) return;
         if (collision.gameObject.tag != "Player") return;
-        GameplayManager.OnBadLackChange?.Invoke();
+
+        if (SecretsEnding.I.SecretsEndingGoatskinProgress)
+            SecretsEnding.I.HappyEnd();
+        else
+            GameplayManager.OnBadLackChange?.Invoke();
     }
 
     private void OnTriggerEnter2D(Collider2D collision)
@@ -85,6 +93,12 @@ public class Player : MonoBehaviour
         {
             goatskin = true;
             collision.transform.GetComponent<Pickable>().Pickup();
+        }
+        else if (collision.gameObject.tag == "Goatskin" && !hasBadLuck && SecretsEnding.I.SecretsEndingEnable)
+        {
+            goatskin = true;
+            collision.transform.GetComponent<Pickable>().Pickup();
+            SecretsEnding.I.SecretsEndingGoatskinProgress = true;
         }
         else if (collision.gameObject.tag == "Goast" && !hasBadLuck)
         {

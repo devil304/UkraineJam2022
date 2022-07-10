@@ -8,7 +8,6 @@ public class PickablePlacement : MonoBehaviour
     [SerializeField] private PicablePlace[] _picablePlaceMoney;
     [SerializeField] private PicablePlace[] _picablePlaceGoatskin;
     [SerializeField] private PicablePlace[] _picablePlaceGoat;
-    [SerializeField] private GameObject _moneyPrefab;
     [SerializeField] private Pickable _goatskin;
     [SerializeField] private Pickable _goast;
 
@@ -55,12 +54,11 @@ public class PickablePlacement : MonoBehaviour
         var randomIndex = UnityEngine.Random.Range(0, _picablePlaceMoney.Length);
         var picablePlace = _picablePlaceMoney[randomIndex];
         if (picablePlace.resereved == true) return;
-        var randomPoint = picablePlace;
-        randomPoint.resereved = true;
+        picablePlace.resereved = true;
         var money = MoneyPool.I.Get();
-        var pickable = _moneyPrefab.GetComponent<Pickable>();
-        pickable.piclablePlace = randomPoint;
-        money.position = randomPoint.transform.position;
+        var pickable = money.GetComponent<Pickable>();
+        pickable.piclablePlace = picablePlace;
+        money.position = picablePlace.transform.position;
         money.gameObject.SetActive(true);
     }
 }
